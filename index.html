@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tayeb Eyaser Niloy | Academic Portfolio</title>
+  <meta name="description" content="Wall-bounded turbulence, Experimental fluid mechanics, Flow visualization, Unsteady aerodynamic flows" />
+  <meta name="author" content="Tayeb Eyaser Niloy" />
+  <link id="dynamic-favicon" rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230a0a0b'/%3E%3Ctext x='50%25' y='54%25' font-family='system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif' font-weight='700' font-size='28' text-anchor='middle' fill='%23e5e7eb'%3ETN%3C/text%3E%3C/svg%3E" />
+  <style>
+    :root{ --bg:#0b0d10; --bg-elev:#101318; --text:#e7e9ee; --muted:#9aa3b2; --brand:#5ad2ff; --brand-2:#7cffc4; --card:#11151b; --border:#1b222c; --chip:#161b22; --anim:200ms cubic-bezier(.2,.8,.2,1) }
+    *{ box-sizing:border-box }
+    body{ margin:0; background:var(--bg); color:var(--text); font:16px/1.6 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto }
+    a{ color:var(--brand); text-decoration:none }
+    a:hover{ color:var(--brand-2) }
+    header{ position:sticky; top:0; z-index:10; background:color-mix(in hsl, var(--bg-elev) 90%, transparent); backdrop-filter:saturate(180%) blur(10px); border-bottom:1px solid var(--border) }
+    .nav{ max-width:1100px; margin:0 auto; padding:14px 20px; display:flex; align-items:center; justify-content:space-between; gap:12px }
+    .brand{ display:flex; align-items:center; gap:12px }
+    .avatar{ width:42px; height:42px; border-radius:50%; background:linear-gradient(135deg,var(--brand),var(--brand-2)); display:grid; place-items:center; color:#001018; font-weight:800 }
+    .name{ font-weight:800 }
+    .tag{ font-size:13px; color:var(--muted) }
+    nav a{ margin:0 8px; font-weight:600; color:var(--muted) }
+    nav a.active, nav a:hover{ color:var(--text) }
+    .container{ max-width:1100px; margin:0 auto; padding:26px 20px }
+    .hero{ padding:64px 20px 24px }
+    .hero h1{ font-size:42px; margin:6px 0 }
+    .hero p{ color:var(--muted); max-width:750px }
+    .cta{ display:flex; flex-wrap:wrap; gap:12px; margin-top:16px }
+    .btn{ display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:12px; border:1px solid var(--border); background:var(--chip); color:var(--text); font-weight:600 }
+    .btn-primary{ background:linear-gradient(135deg,var(--brand),var(--brand-2)); color:#001018; border:none }
+    .grid{ display:grid; gap:16px }
+    .cards{ grid-template-columns:repeat(auto-fit,minmax(260px,1fr)) }
+    .card{ background:var(--card); border:1px solid var(--border); border-radius:16px; padding:18px }
+    .card h3{ margin:4px 0 8px }
+    .chip{ display:inline-block; padding:6px 10px; border-radius:999px; background:var(--chip); border:1px solid var(--border); color:var(--muted); font-size:12px }
+    .muted{ color:var(--muted) }
+    footer{ padding:32px 20px; border-top:1px solid var(--border); color:var(--muted); text-align:center; margin-top:32px }
+    #progress{ position:absolute; left:0; bottom:0; height:2px; width:0%; background:linear-gradient(90deg,var(--brand),var(--brand-2)) }
+    #to-top{ position:fixed; right:18px; bottom:18px; display:none; padding:10px 12px; border-radius:12px; border:1px solid var(--border); background:var(--chip); color:var(--text) }
+    #to-top.show{ display:inline-flex }
+    @media (max-width:640px){ .hero h1{ font-size:32px } nav{ display:none } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav" style="position:relative">
+      <div class="brand">
+        <div class="avatar">TN</div>
+        <div>
+          <div class="name">Tayeb Eyaser Niloy</div>
+          <div class="tag">Wall-bounded turbulence · Experimental fluid mechanics</div>
+        </div>
+      </div>
+      <nav id="nav">
+        <a data-route="#/" href="#/">Home</a>
+        <a data-route="#/education" href="#/education">Education</a>
+        <a data-route="#/projects" href="#/projects">Projects</a>
+        <a data-route="#/teaching" href="#/teaching">Teaching</a>
+        <a data-route="#/publications" href="#/publications">Publications</a>
+        <a data-route="#/awards" href="#/awards">Awards</a>
+        <a data-route="#/contact" href="#/contact">Contact</a>
+      </nav>
+      <div id="progress"></div>
+    </div>
+  </header>
+
+  <main id="app" class="container" aria-live="polite"></main>
+
+  <button id="to-top" title="Back to top">↑</button>
+
+  <footer>
+    © <span id="year"></span> Tayeb Eyaser Niloy · Hosted on GitHub Pages
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // ---------- DATA ----------
+    const DATA = {
+      email: 'tayeb.eyaser.niloy@gmail.com',
+      cv: 'https://drive.google.com/uc?export=download&id=https://drive.google.com/file/d/1tT8GSvvbRQ5II_u4jgL4KjSVrJb2kU0A/view?usp=sharing', // replace with your Drive FILE ID
+      interests: [
+        'Wall-bounded turbulence','Experimental fluid mechanics','Flow visualization (PIV/PTV)','Unsteady aerodynamic flows'
+      ],
+      education: [
+        { degree: 'B.Sc. (Engr.) in Mechatronics Engineering', inst: 'Khulna University of Engineering & Technology (KUET)', place:'Khulna, Bangladesh', period:'2018 – 2024', details:'CGPA: 3.69/4.00 · Class Rank: 3rd' }
+      ],
+      teaching: [
+        { role:'Lecturer (Part-Time)', org:'Khulna University of Engineering & Technology', period:'Oct 2024 – Current', bullets:[
+          'Delivered a theory course on Human–Robot Interaction',
+          'Led sessional courses on Robotics, and Sensors & Instrumentation'
+        ]}
+      ],
+      publications: [
+        { title:'Tonal Noise Mitigation in Multirotor UAVs Using Unevenly Spaced Counterweighted Propellers: A Combined Experimental and Numerical Study', status:'Manuscript in preparation' }
+      ],
+      projects: [
+        { title:'Low-Tonal Noise Propeller for Autonomous Delivery Drone', when:'Feb 2023 – Feb 2024', summary:'Counterweighted, uneven blade spacing design; verified ANSYS simulations via frequency-domain analysis of recorded propeller noise; integrated autonomous navigation on a commercial flight controller.', tags:['ANSYS','Signal Processing','UAV','Acoustics'] },
+        { title:'Prosthetic Hand (MyoWare 2.0 + Servos)', when:'Aug 2023', summary:'Surface EMG-based actuation for finger control; rapid prototyping and calibration.', tags:['EMG','Servo','Embedded'] },
+        { title:'Quadcopter with Custom Arduino Flight Controller', when:'Dec 2022', summary:'Arduino Uno + MPU6050; implemented altitude hold and stabilization.', tags:['Arduino','MPU6050','Control'] },
+        { title:'Wearable IoT for Heart Attack Detection', when:'Oct 2022', summary:'NodeMCU + AD8232 ECG sensor; on-device deep-learning inference for risk prediction.', tags:['IoT','ECG','DL'] },
+        { title:'Automated Conveyor (ATmega32A)', when:'Dec 2021', summary:'IR sensing and geared drive control for automated material flow.', tags:['ATmega32A','IR','Embedded'] },
+        { title:'Password-Protected Vault', when:'Mar 2021', summary:'Arduino + keypad + solenoid locking with access logic.', tags:['Arduino','Security'] },
+        { title:'Home Automation System', when:'Jun 2019', summary:'Environmental sensing for appliance control (temp/humidity).', tags:['IoT','Sensors'] }
+      ],
+      skills: {
+        simulation:['ANSYS','SolidWorks','Proteus'],
+        programming:['C','Python','MATLAB','Arduino'],
+        prototyping:['3D Printing','Laser Cutting','PCB Etching/Design','3D Rendering'],
+        soft:['Critical Thinking','Attention to Detail','Adaptability','Teamwork'],
+        tools:['Word','PowerPoint','Excel','Illustrator','Premiere Pro','Canva']
+      },
+      awards:[
+        'KUET Technical Scholarship (4 years)',
+        'SSC & JSC Scholarships (DSHE, Bangladesh)',
+        'Finalist — Anatolian Rover Challenge 2022 (UKET)',
+        '9th — IPAS Challenge (Mars Society South Asia), 2021',
+        '10th — Indian Rover Design Challenge, 2020',
+        'Certified SolidWorks Professional (CSWP) & Associate (CSWA)',
+        '1st Runners-up — C Programming Contest (IEM Robotics & CAD Club, KUET), 2019',
+        '1st Runners-up — BizBash Case Study (KUET Career Club), 2019',
+        'Divisional Science Olympiads — 4th & 7th (2018 & 2017)',
+        '1st — Science & ICT Fair 2018 (Sristy Education Family)',
+        '1st Runners — Poster Presentation (MIST Robolution), 2017'
+      ]
+    };
+
+    // ---------- TEMPLATES ----------
+    const html = String.raw;
+    const Home = () => html`
+      <section class="hero">
+        <h1>Hi, I'm Tayeb Eyaser Niloy 👋</h1>
+        <p>Prospective researcher focused on ${DATA.interests.slice(0,2).join(' · ')} and more.</p>
+        <div class="cta">
+          <a class="btn btn-primary" href="${DATA.cv}" target="_blank">📄 Download CV</a>
+          <a class="btn" href="mailto:${DATA.email}">✉️ Email</a>
+        </div>
+      </section>
+      <section>
+        <div class="grid cards">
+          <article class="card"><h3>Research Interests</h3><p class="muted">${DATA.interests.join(' · ')}</p></article>
+          <article class="card"><h3>Latest</h3><p class="muted">Exploring tonal noise mitigation for multirotor UAVs (manuscript in prep).</p></article>
+          <article class="card"><h3>At a Glance</h3><p class="muted">B.Sc. (KUET), scholarship recipient, rover challenges finalist, hands-on embedded & aero projects.</p></article>
+        </div>
+      </section>
+    `;
+
+    const Education = () => html`
+      <h2>Education</h2>
+      <div class="grid cards">
+        ${DATA.education.map(e => html`<article class="card">
+          <h3>${e.degree}</h3>
+          <div class="muted">${e.inst} · ${e.place} · ${e.period}</div>
+          <p class="muted">${e.details}</p>
+        </article>`).join('')}
+      </div>
+    `;
+
+    const Teaching = () => html`
+      <h2>Teaching</h2>
+      <div class="grid cards">
+        ${DATA.teaching.map(t => html`<article class="card">
+          <h3>${t.role}</h3>
+          <div class="muted">${t.org} · ${t.period}</div>
+          <ul>${t.bullets.map(b=>`<li>${b}</li>`).join('')}</ul>
+        </article>`).join('')}
+      </div>
+    `;
+
+    const Publications = () => html`
+      <h2>Publications</h2>
+      <div class="grid cards">
+        ${DATA.publications.map(p => html`<article class="card">
+          <h3>${p.title}</h3>
+          <span class="chip">${p.status}</span>
+        </article>`).join('')}
+      </div>
+    `;
+
+    const Projects = () => html`
+      <h2>Projects</h2>
+      <div class="grid cards">
+        ${DATA.projects.map(p => html`<article class="card">
+          <h3>${p.title}</h3>
+          <div class="muted">${p.when}</div>
+          <p>${p.summary}</p>
+          <div>${(p.tags||[]).map(t=>`<span class="chip">${t}</span>`).join(' ')}</div>
+        </article>`).join('')}
+      </div>
+    `;
+
+    const Awards = () => html`
+      <h2>Awards & Achievements</h2>
+      <div class="grid cards">
+        ${DATA.awards.map(a=>html`<article class="card">${a}</article>`).join('')}
+      </div>
+    `;
+
+    const Contact = () => html`
+      <h2>Contact</h2>
+      <p class="muted">Email is the best way to reach me for research collaboration, RA/TA roles, or academic queries.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="mailto:${DATA.email}">Email Me</a>
+        <a class="btn" href="${DATA.cv}" target="_blank">Download CV</a>
+      </div>
+    `;
+
+    // ---------- ROUTER ----------
+    const routes = {
+      '#/': Home,
+      '#/education': Education,
+      '#/projects': Projects,
+      '#/teaching': Teaching,
+      '#/publications': Publications,
+      '#/awards': Awards,
+      '#/contact': Contact
+    };
+
+    function render(){
+      const app = document.getElementById('app');
+      const hash = location.hash || '#/' ;
+      const view = routes[hash] || Home;
+      app.innerHTML = view();
+      // active nav
+      document.querySelectorAll('nav a').forEach(a=>{
+        a.classList.toggle('active', a.getAttribute('href')===hash);
+      });
+    }
+
+    // Ensure Home renders immediately, even before load events
+if (!location.hash) { location.replace('#/'); }
+render();
+// Re-render on navigation
+window.addEventListener('hashchange', render);
+
+    // Progress bar + to-top
+    const prog = document.getElementById('progress');
+    const toTop = document.getElementById('to-top');
+    window.addEventListener('scroll', ()=>{
+      const h = document.documentElement;
+      const scrolled = (h.scrollTop)/(h.scrollHeight - h.clientHeight) * 100;
+      prog.style.width = scrolled + '%';
+      toTop.classList.toggle('show', h.scrollTop > 400);
+    }, {passive:true});
+    toTop.addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
+  </script>
+</body>
+</html>
